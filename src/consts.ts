@@ -85,14 +85,14 @@ export const menuItems = [
 
 // Social media and contact icons
 export const socialIcons = [
+  // {
+  //   href: "https://afdian.net/a/saroprock",
+  //   ariaLabel: "Support my work",
+  //   title: "Support my work",
+  //   svg: "ri:cup-line",
+  // },
   {
-    href: "https://afdian.net/a/saroprock",
-    ariaLabel: "Support my work",
-    title: "Support my work",
-    svg: "ri:cup-line",
-  },
-  {
-    href: "https://github.com/EveSunMaple",
+    href: "https://github.com/BaBaPreorder",
     ariaLabel: "Github",
     title: "Github",
     svg: "ri:github-line",
