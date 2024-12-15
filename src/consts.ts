@@ -77,7 +77,7 @@ export const menuItems = [
   {
     id: "contact",
     text: "Contact",
-    href: "mailto:ramungth001@gannon.edu", // Contact email
+    href: "mailto:mirthzna@mirthz.xyz", // Contact email
     target: "_blank", // Open in a new tab
     svg: "material-symbols:attach-email-outline-rounded",
   },
