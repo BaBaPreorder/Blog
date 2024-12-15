@@ -3,15 +3,15 @@
 
 // Site title and description
 export const SITE_LANG = "en";
-export const SITE_TAB = "Frosti";
-export const SITE_TITLE = "Frosti 🧊";
+export const SITE_TAB = "Mirthz_Blog";
+export const SITE_TITLE = "Mirthz 👀";
 export const SITE_DESCRIPTION = "A blog template";
 export const DATE_FORMAT = "ddd MMM DD YYYY";
 
 // User profile information
-export const USER_NAME = "EveSunMaple";
-export const USER_SITE = "https://frosti.saroprock.com"
-export const USER_AVATAR = "/profile.webp";
+export const USER_NAME = "Mirthz";
+export const USER_SITE = "https://mirthz.xyz"
+export const USER_AVATAR = "/Nyan_Cat_Human_ver.webp";
 
 // Server and transition settings
 export const SERVER_URL = "https://demo.saroprock.com";
@@ -29,7 +29,7 @@ export const CODE_THEME = {
 // Menu items for navigation
 export const menuItems = [
   { id: "home", text: "Home", href: "/", svg: "material-symbols:home-outline-rounded", target: "_self" }, // Home page
-  { id: "about", text: "About", href: "/about", svg: "material-symbols:info-outline-rounded", target: "_self" }, // About page
+  { id: "about", text: "My timeline", href: "/about", svg: "material-symbols:info-outline-rounded", target: "_self" }, // About page
   {
     id: "blog",
     text: "Blogs",
@@ -45,28 +45,28 @@ export const menuItems = [
         target: "_self",
       }, // All blog
       {
-        id: "tech",
-        text: "Tech blogs",
-        href: "/blog/categories/tech",
+        id: "review",
+        text: "Review",
+        href: "/blog/categories/review",
         svg: "material-symbols:deployed-code-outline",
         target: "_self",
-      }, // Technology category
+      }, // review category
       {
-        id: "life",
-        text: "Life blogs",
-        href: "/blog/categories/life",
+        id: "writeup",
+        text: "Writeup",
+        href: "/blog/categories/writeup",
         svg: "material-symbols:earthquake-rounded",
         target: "_self",
-      }, // Life category
+      }, // writeup category
     ],
   }, // Blog page with sub-items
-  {
-    id: "project",
-    text: "Project",
-    href: "/project",
-    svg: "material-symbols:code-blocks-outline",
-    target: "_self",
-  }, // Projects page
+  // {
+  //   id: "project",
+  //   text: "Project",
+  //   href: "/project",
+  //   svg: "material-symbols:code-blocks-outline",
+  //   target: "_self",
+  // }, // Projects page
   {
     id: "friend",
     text: "Friend",
@@ -77,7 +77,7 @@ export const menuItems = [
   {
     id: "contact",
     text: "Contact",
-    href: "mailto:contact.evesunmaple@outlook.com", // Contact email
+    href: "mailto:ramungth001@gannon.edu", // Contact email
     target: "_blank", // Open in a new tab
     svg: "material-symbols:attach-email-outline-rounded",
   },
@@ -97,12 +97,12 @@ export const socialIcons = [
     title: "Github",
     svg: "ri:github-line",
   },
-  {
-    href: "https://space.bilibili.com/438392347",
-    ariaLabel: "BiliBili",
-    title: "BiliBili",
-    svg: "ri:bilibili-line",
-  },
+  // {
+  //   href: "https://tryhackme.com/r/p/MirthZ",
+  //   ariaLabel: "Tryhackme",
+  //   title: "Tryhackme",
+  //   svg: "si-tryhackme",
+  // },
   {
     href: "/rss.xml",
     ariaLabel: "RSS Feed",
