@@ -46,14 +46,14 @@ export const menuItems = [
       }, // All blog
       {
         id: "review",
-        text: "Review",
+        text: "review",
         href: "/blog/categories/review",
         svg: "material-symbols:deployed-code-outline",
         target: "_self",
       }, // review category
       {
         id: "writeup",
-        text: "Writeup",
+        text: "writeup",
         href: "/blog/categories/writeup",
         svg: "material-symbols:earthquake-rounded",
         target: "_self",
