@@ -5,7 +5,7 @@
 export const SITE_LANG = "en";
 export const SITE_TAB = "Mirthz_Blog";
 export const SITE_TITLE = "Mirthz 👀";
-export const SITE_DESCRIPTION = "A blog template";
+export const SITE_DESCRIPTION = "Cyber security Blog";
 export const DATE_FORMAT = "ddd MMM DD YYYY";
 
 // User profile information
