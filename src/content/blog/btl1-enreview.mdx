@@ -1,0 +1,166 @@
+title: BTL1 Review (EN ver.)
+description: A review of BTL1 and how to prepare for the exam
+pubDate: 12 16 2024
+image: /image/btl1.png
+categories:
+  - review
+badge: BTL1
+tags:
+  - blue team
+  - certificate
+---
+import LinkCard from "../../components/page/LinkCard.astro";
+
+## Greetings, everyone! ✋✋✋
+Hello, everyone! This is my very first time writing a review for a certification exam, and it also marks the official launch of my new blog. If there’s any incorrect information or mistakes in this post, I’d like to apologize in advance. <br /><br />
+
+![head1](/image/cert.png) <br />
+
+Alright, let’s get into the details of **BTL1**, or more specifically, **Blue Team Level 1**. This is a hands-on (purely practical) junior-level certification focusing on the Blue Team track offered by Security Blue Team. <br />
+Ref: [https://www.securityblue.team/certifications/blue-team-level-1](https://www.securityblue.team/certifications/blue-team-level-1) <br /><br />
+
+<div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingLeft: "2rem" }}>
+  <img src="/image/list.png" alt="list" style={{ maxWidth: "100%", height: "auto" }} />
+  <p style={{ fontSize: "0.9rem", color: "gray", marginTop: "0.5rem", textAlign: "center" }}>
+    BTL1 is a DFIR certificate at the Tier Intermediate level in <a href="https://pauljerimy.com/security-certification-roadmap/" style="color: Orange; text-decoration: underline;">Paul Jerimy’s Security Certification Roadmap</a>
+  </p>
+</div>
+
+## Important Note Before You Read Further
+Security Blue Team requires all exam candidates to accept a **Non-Disclosure Agreement (NDA)**, meaning exam content cannot be revealed. Therefore, I will not discuss specific exam details here. Instead, I’ll focus on the course content and tips for exam preparation only.
+
+Ref: [https://www.securityblue.team/btl1-exam-nda/](https://www.securityblue.team/btl1-exam-nda/)
+
+## **Pricing, Course Content, Preparation, and the Exam**
+
+Let’s start with the pricing, since it can be quite significant when converted to Thai Baht.  
+BTL1 (which includes the course and two exam attempts) is normally priced at 399.00 GBP, which is around 17,175.07 THB (based on the exchange rate on 12/16/2024).
+
+However, if you register using a valid .edu email address, you’ll instantly get a 10% discount. (For Thai university students whose emails may not use “.edu” like international schools do, you’ll need to contact the Security Blue Team support to prove your student status first.) <br /><br />
+
+<div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingLeft: "1rem" }}>
+  <img src="/image/bfd1.png" alt="bfd" style={{ maxWidth: "100%", height: "auto" }} />
+  <p style={{ fontSize: "0.9rem", color: "gray", marginTop: "0.1rem", textAlign: "center" }}>
+    Promotion Black Friday
+  </p>
+</div>
+
+Another way to get a discount is to wait for Black Friday promotions. These usually run from late November to early December each year, although the exact deals vary from year to year. In 2024, BTL1 got a 10% discount (the same as the student discount) and included 1 free month of BTLO PRO ([Blue Team Labs Online](https://blueteamlabs.online)) for extra practice.
+
+You can check InfoSec Black Friday deals here: [InfoSec-Black-Friday](https://github.com/0x90n/InfoSec-Black-Friday/) <br /><br />
+
+<div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingLeft: "1rem" }}>
+  <img src="/image/head1.png" alt="head" style={{ maxWidth: "100%", height: "auto" }} />
+  <p style={{ fontSize: "0.9rem", color: "gray", marginTop: "0.1rem", textAlign: "center" }}>
+    Dashboard
+  </p>
+</div>
+
+For the course itself, you get 4 months of access to all materials, which include:
+- 314 subtopics (across 6 main sections)
+- 32 quizzes to test your knowledge after each subtopic
+- 24 labs to practice various tools
+
+**The course timer doesn’t start until you click “Start,” so you can purchase it and begin whenever you’re ready.** <br />
+
+![part1](/image/part1.png)
+![part2](/image/part2.png) <br />
+
+BTL1 covers 6 main topics:
+- Security Fundamentals  
+- Phishing Email Analysis  
+- Threat Intelligence  
+- Digital Forensic  
+- Security Information and Event Monitoring  
+- Incident Response  
+
+Additional sections introduce the course itself and how to prepare for the exam. The curriculum balances theoretical explanations with practical guidance on using different tools. Each section also has labs to help reinforce your understanding. <br /><br />
+
+![lab1](/image/lab1.png) <br />
+
+For practice labs, 5 out of the 6 main topics have corresponding labs. You get 100 hours to access these labs. You can use them as often as you want, and most learners only need about 10 hours in total to complete them. So, there’s no need to worry about running out of lab time. The system also auto-shuts down any running lab environment after 6 hours if you forget to shut it down yourself. <br />
+
+### **Exam Preparation**
+First and foremost, I recommend fully practicing with the labs in the course until you’re confident. Then, continue your practice on BTLO by searching for “BTL1” labs. Here are some categories to help you:
+
+- Phishing Analysis  
+  - [Virustotal](https://www.virustotal.com/gui/)  
+  - [URLHaus](https://urlhaus.abuse.ch/)  
+  - BTLO Lab: [Deep Phish](https://blueteamlabs.online/home/investigation/deep-phish-567b38a0ef)  
+
+- Threat Intelligence  
+  - [MITRE ATT&CK](https://attack.mitre.org/)  
+  - [Insider Threat Matrix](https://insiderthreatmatrix.org)  
+  - [ANY.RUN](https://any.run)  
+  - BTLO Labs: [ATT&CK](https://blueteamlabs.online/home/challenge/attck-0e4914db5d), [Foxy](https://blueteamlabs.online/home/investigation/foxy-45e69136ae)  
+
+- Digital Forensics  
+  - [Awesome Forensic](https://github.com/cugu/awesome-forensics)  
+  - BTLO Lab: [Sukana](https://blueteamlabs.online/home/investigation/sukana-3e7d31b12a)  
+
+- SIEM  
+  - [Splunk Documentation](https://docs.splunk.com/Documentation)  
+  - BTLO Labs: [Splunk IT](https://blueteamlabs.online/home/investigation/splunk-it-0aae63055a), [Drilldown](https://blueteamlabs.online/home/investigation/drilldown-db9ea241de)
+
+Ref: [https://berardinellidaniele.com/blog/btl1-certification](https://berardinellidaniele.com/blog/btl1-certification)
+
+Make sure you understand and are comfortable with these tools. Don’t forget to take care of yourself before the exam: get enough sleep and clear your mind.
+
+### **The Exam**
+You’ll be given a simulated scenario and must answer 20 questions about it. You have 24 hours to complete the exam. There’s no need to submit a formal report; once you’ve answered all 20 questions, you can simply submit.  
+You have 2 exam attempts within 1 year after starting the course. To pass, you need a score of at least 70% (i.e., 14 out of 20). If you pass, you’ll receive a certificate, sticker, and a silver challenge coin by mail.  
+If you manage to score over 90% on your first attempt, you’ll get a gold coin instead. You’ll also receive feedback on which questions you missed after you finish. <br />
+
+<div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingLeft: "1rem" }}>
+  <img src="/image/coin.webp" alt="coin" style={{ maxWidth: "100%", height: "auto" }} />
+  <p style={{ fontSize: "0.9rem", color: "gray", marginTop: "0.1rem", textAlign: "center" }}>
+    Certificate and Challenge Coin
+  </p>
+</div>
+
+### **Post-Exam Review**
+<div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingLeft: "1rem" }}>
+  <img src="/image/mirthcert.png" alt="certmirth" style={{ maxWidth: "100%", height: "auto" }} />
+  <p style={{ fontSize: "0.9rem", color: "gray", marginTop: "0.1rem", textAlign: "center" }}>
+    The new certificate design is nice and bright
+  </p>
+</div>
+
+Here are my personal thoughts:  
+- The course content is quite good. It covers a lot of theory, giving you a deeper understanding of many concepts.  
+- The exam itself wasn’t too difficult. I personally finished all 20 questions in about 4 hours (including writing my own report for reference). If you’re used to doing CTFs or labs, you should be fine—but practice is still key!  
+
+<br />
+
+<div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingLeft: "1rem" }}>
+  <img src="/image/pass.png" alt="pass" style={{ maxWidth: "100%", height: "auto" }} />
+  <p style={{ fontSize: "0.9rem", color: "gray", marginTop: "0.1rem", textAlign: "center" }}>
+    Pass!!
+  </p>
+</div>
+
+I ended up scoring 75%, and I’m not entirely sure where I went wrong (based on the feedback, I know which questions I missed, but I still feel like my original answers should have been correct). I’m currently awaiting a review, and once that’s done, I’ll be looking forward to receiving the coin. I’ll definitely share it in this blog later on.
+
+## **Tips**
+- Take notes in your own style, making them easy for you to understand.  
+- You have 24 hours for the exam, so don’t rush—think things through carefully.  
+- Practice writing reports for each step (this helps reinforce your understanding of the case and is good practical training).  
+- Always review what you’ve done afterward (using your own report is a great way to recap).  
+
+## **Summary**
+- BTL1 is perfect for those who want to work in a Blue Team role.  
+- It suits both beginners and those with some experience.  
+- Compared to other DFIR certifications, I believe BTL1 is an excellent introductory cert to have on your resume. <br /><br />
+
+{/* > If you’re looking for more info, here are some Thai-language reviews from others who’ve taken the exam:
+- [https://medium.com/@iCreaM/รีวิวคอร์สและการสอบ-btl1-certification-b6d616ac6e71](https://medium.com/@iCreaM/รีวิวคอร์สและการสอบ-btl1-certification-b6d616ac6e71)  
+- [https://suksit.com/posts/btl1-certification-review/](https://suksit.com/posts/btl1-certification-review/)  
+- [https://so-sonajaa.medium.com/subject-review-exam-certificate-btl1-99af36ece7f6](https://so-sonajaa.medium.com/subject-review-exam-certificate-btl1-99af36ece7f6)  
+- [https://medium.com/@TidtEe/course-and-exam-btl1-certification-review-1d60f6b64817](https://medium.com/@TidtEe/course-and-exam-btl1-certification-review-1d60f6b64817) */}
+
+<LinkCard
+  title="Mirthz"
+  desc="Thank you so much for reading until the end. I'll keep posting more on the blog, so stay tuned! 😽"
+  url="https://mirthz.xyz"
+  img="/Nyan_Cat_Human_ver.webp"
+/>
