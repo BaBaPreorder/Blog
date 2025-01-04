@@ -85,24 +85,24 @@ export const menuItems = [
 
 // Social media and contact icons
 export const socialIcons = [
-  // {
-  //   href: "https://afdian.net/a/saroprock",
-  //   ariaLabel: "Support my work",
-  //   title: "Support my work",
-  //   svg: "ri:cup-line",
-  // },
+  {
+    href: "https://www.facebook.com/mirth.pattarapong",
+    ariaLabel: "Facebook",
+    title: "Facebook",
+    svg: "ri:facebook-line",
+  },
+  {
+    href: "https://www.linkedin.com/in/mirthz/",
+    ariaLabel: "Facebook",
+    title: "Facebook",
+    svg: "ri:linkedin-line",
+  },
   {
     href: "https://github.com/BaBaPreorder",
     ariaLabel: "Github",
     title: "Github",
     svg: "ri:github-line",
   },
-  // {
-  //   href: "https://tryhackme.com/r/p/MirthZ",
-  //   ariaLabel: "Tryhackme",
-  //   title: "Tryhackme",
-  //   svg: "si-tryhackme",
-  // },
   {
     href: "/rss.xml",
     ariaLabel: "RSS Feed",
