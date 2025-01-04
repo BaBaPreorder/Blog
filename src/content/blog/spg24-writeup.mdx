@@ -1,0 +1,323 @@
+---
+title: Secplayground Bloody XMAS CTF Event 2024 (DF only)
+description: เฉลยโจทย์งาน Secplayground Bloody XMAS CTF Event 2024
+pubDate: 01 03 2025
+image: /image/spg-christmas/spg1.png
+categories:
+  - writeup
+badge: CTF
+tags:
+  - blue team
+  - CTF
+---
+import LinkCard from "../../components/page/LinkCard.astro";
+
+## Greeting Everybody ✋✋✋
+สวัสดีครับทุกๆท่าน วันนี้ผมเป็นตัวแทนของทีมคนขี้คุกอย่าง ```อย่าซีเล็ง เดี๋ยวซู้ลิ่ง``` มาเขียน Writeup ของงาน Secplayground Bloody XMAS CTF Event 2024 มาให้เพื่อนๆได้รับชมกันครับ
+ส่วนตัวผมเล่น CTF ของ Secplayground ทุกปีครับ ปีนี้ก็ค่อนข้างสนุกเลย มีซาวน์ Santa เวลาได้ First Blood ด้วย แต่ผมรู้สึกว่า ให้เวลาทำนานไปหน่อยครับ ให้เวลาตั้ง 4 วัน😅<br /><br />
+
+<div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingLeft: "2rem" }}>
+  <img src="/image/spg-christmas/teammember.png" alt="list" style={{ maxWidth: "100%", height: "auto" }} />
+  <p style={{ fontSize: "0.1rem", color: "gray", marginTop: "0.5rem", textAlign: "center" }}>
+    _รายชื่อคนขี้คุกในทีมครับ_ 🤣
+  </p>
+</div>
+
+
+Okay ครับ สำหรับ Writeup ที่เพื่อนๆ จะให้ดูต่อจากนี้ ผมนำเสนอแค่ในส่วนของ DF(Digital Forensic) นะครับ
+เนื่องจากได้พูดคุยกับทางเพจพันธมิตร [Chicken_0248](https://medium.com/@chaoskist) แล้วว่าเค้าจะทำในส่วน IR ทั้งหมด
+   <br /><br />
+
+
+<div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingLeft: "2rem" }}>
+  <img src="/image/spg-christmas/DF1.png" alt="list" style={{ maxWidth: "30%", height: "auto" }} />
+  <img src="/image/spg-christmas/DF2.png" alt="list" style={{ maxWidth: "30%", height: "auto" }} />
+  <p style={{ fontSize: "0.1rem", color: "gray", marginTop: "0.5rem", textAlign: "center" }}>
+    _DF มีจำนวนทั้งหมด 11 ข้อครับ_
+  </p>
+</div>
+
+## Writeup
+### ```Santa_Message```
+ข้อ 1. Dr.Eye is the best developer in our Santa company. Normally, She works with the team by storing code on the internet and setting it to private, sharing it only with team members. Before She disappeared, She left behind an audio clip, which contains a secret, stored in the same place where She keeps the source code. Based on the data from Dr.Eye's device, we need help analyzing and identifying the website where the secret audio clip is stored, then decrypt it to extract the secret message from the clip.
+30 pts.<br /><br /> 
+
+<div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingLeft: "2rem" }}>
+  <img src="/image/spg-christmas/s1.png" alt="list" style={{ maxWidth: "30%", height: "auto" }} />
+  <p style={{ fontSize: "0.1rem", color: "gray", marginTop: "0.5rem", textAlign: "center" }}>
+    _สำหรับข้อนี้จะได้เป็นชุด Live forensic ของ KAPE มาครับ_ 
+  </p>
+</div>
+จากโจทย์ระบุว่าให้พวกเราช่วยระบุเว็บไซต์ที่เก็บ secret audio clip ไว้ เลยนึกออกว่าต้องค้นใน History ของ Web browser ซึ่งในโจทย์นี้จะใช้เป็นตัว Google Chrome 
+<br /> 
+
+<div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingLeft: "2rem" }}>
+  <img src="/image/spg-christmas/s1-1.png" alt="list" style={{ maxWidth: "70%", height: "auto" }} />
+  <p style={{ fontSize: "0.1rem", color: "gray", marginTop: "0.5rem", textAlign: "center" }}>
+    _ผมใช้ Hindsight GUI ในการทำโจทย์ครับ_ 
+  </p>
+</div>
+ไฟล์ History จะอยู่ที่ Path 
+> ...\C\Users\windows\AppData\Local\Google\Chrome\User Data\Default
+
+<br />
+
+<div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingLeft: "2rem" }}>
+  <img src="/image/spg-christmas/s1-2.png" alt="list" style={{ maxWidth: "120%", height: "auto" }} />
+  <p style={{ fontSize: "0.1rem", color: "gray", marginTop: "0.5rem", textAlign: "center" }}>
+    _เจอสิ่งที่น่าสนใจ_ 
+  </p>
+</div>
+เพื่อให้ง่ายต่อการวิเคราะห์ ให้ Export เป็น xlsx ครับ เมื่อค้นไปสักพักจะพบว่ามีประวัติการเข้า repo github ที่น่าสนใจคือ 
+https://github.com/eye9997/Santa_message เข้าไปดูต่อกันเลย<br /><br />  
+
+
+<div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingLeft: "2rem" }}>
+  <img src="/image/spg-christmas/s1-3.png" alt="list" style={{ maxWidth: "70%", height: "auto" }} />
+  <p style={{ fontSize: "0.1rem", color: "gray", marginTop: "0.5rem", textAlign: "center" }}>
+    _มีไฟล์เสียงมาให้น่าจะเป็น secret audio clip ตามที่โจทย์ว่าไว้_ 
+  </p>
+</div>
+
+โหลดไฟล์เสียงมาเก็บไว้ก่อน จากนั้นเมื่ออ่าน README.md พบว่า ให้ข้อมูลบางอย่างมาคือ
+```markdown
+Santa_message
+LSB:1
+
+Byte:1026868
+
+Link: https://github.com/itxKAE/Video-Steganography
+```
+แสดงว่าทางโจทย์อยากให้เราใช้ [Video-Steganography](https://github.com/itxKAE/Video-Steganography) ในการถอดบางอย่างจากไฟล์ .wav
+<br /><br />
+
+<div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingLeft: "2rem" }}>
+  <img src="/image/spg-christmas/s1-4.png" alt="list" style={{ maxWidth: "70%", height: "auto" }} />
+  <p style={{ fontSize: "0.1rem", color: "gray", marginTop: "0.5rem", textAlign: "center" }}>
+    _python RunStartHere.py_ 
+  </p>
+</div>
+
+รัน RunStartHere.py แล้วใส่ LSB กับ Byte ที่ได้มาจาก repo Santa_message จากนั้นจะได้เป็นไฟล์ outputdecoded_audio.txt ออกมา
+<br />
+
+<div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingLeft: "2rem" }}>
+  <img src="/image/spg-christmas/s1-5.png" alt="list" style={{ maxWidth: "70%", height: "auto" }} />
+  <p style={{ fontSize: "0.1rem", color: "gray", marginTop: "0.5rem", textAlign: "center" }}>
+    _flag มาแล้ววว_ 
+  </p>
+</div>
+
+<p><strong>{"Flag : forensic{santa_2024}"}</strong></p> 
+
+<br />
+สำหรับ ข้อ 2-5 ```The Snowman’s Secret Message#1-4``` ตอนนี้รอน้อง `แนคบางขวางแดนสาม` ทำ Writeup มาให้เนื่องจากแบ่งงานกันทำครับ<br />
+ส่วนข้อ 6  ```The Snowman’s Secret Message#5``` ทำไงก็ทำไม่ได้ครับ No Clue 😂 <br />
+เอาหล่ะ ไปข้อต่อไปกันเลย <br />
+
+### ```Malware Infection#1```
+ข้อ 7. The browser history is an important part of identifying where the malware was downloaded. Please investigate the browser history to find the full URL from which the malware was downloaded (e.g., www.secplayground.com/malware.exe).
+10 pts.<br />
+
+<div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingLeft: "2rem" }}>
+  <img src="/image/spg-christmas/s7.png" alt="list" style={{ maxWidth: "70%", height: "auto" }} />
+  <p style={{ fontSize: "0.1rem", color: "gray", marginTop: "0.5rem", textAlign: "center" }}>
+    _โจทย์ให้ EnCase Image file (E01) มาขนาด 15 GB โยนเข้า Autopsy ทันที_ 
+  </p>
+</div>
+
+สำหรับข้อนี้โจทย์บอกว่า browser history เป็นส่วนสำคัญในการระบุตำแหน่งของมัลแวร์ โอเครู้แล้วว่าต้องไปค้นที่ตรงไหนก่อน
+<br />
+
+<div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingLeft: "2rem" }}>
+  <img src="/image/spg-christmas/s7-1.png" alt="list" style={{ maxWidth: "100%", height: "auto" }} />
+  <p style={{ fontSize: "0.1rem", color: "gray", marginTop: "0.5rem", textAlign: "center" }}>
+    _รัน Autopsy เสร็จ เช็ค "Web History" เจอ repo github ที่น่าสงสัย_ 
+  </p>
+</div>
+
+ลองเข้าไปดู [repo](https://github.com/taipun/Minecraft)
+<br />
+
+<div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingLeft: "2rem" }}>
+  <img src="/image/spg-christmas/s7-2.png" alt="list" style={{ maxWidth: "100%", height: "auto" }} />
+  <p style={{ fontSize: "0.1rem", color: "gray", marginTop: "0.5rem", textAlign: "center" }}>
+    _MinecraftCrack.exe ดูแล้วกลิ่นแปลกๆ_ 
+  </p>
+</div>
+
+โหลดไฟล์ MinecraftCrack.exe ออกมาแล้วโยนเข้า Virustotal ทันที
+<br />
+
+<div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingLeft: "2rem" }}>
+  <img src="/image/spg-christmas/s7-3.png" alt="list" style={{ maxWidth: "100%", height: "auto" }} />
+  <p style={{ fontSize: "0.1rem", color: "gray", marginTop: "0.5rem", textAlign: "center" }}>
+    _โอเคคคค ชัดเลยยย [Virustotal](https://www.virustotal.com/gui/file/d95c97c31a22087b257107bacfdd21c8cc076463e13863c927d4dd76ed0d1b72)_ 
+  </p>
+</div>
+
+ปิด Autopsy ทันที เพราะว่าคงไม่ได้ใช้ต่อแล้วเท่าที่อ่านโจทย์ ข้อ 8-9 มา<br />
+ส่วนข้อนี้คำตอบจะใช้เป็น url ที่โหลดไฟล์มา
+<p><strong>{"Flag : forensic{https://github.com/taipun/Minecraft/blob/main/MinecraftCrack.exe}"}</strong></p> 
+
+
+### ```Malware Infection#2```
+ข้อ 8. A malicious file often communicates with an attacker-controlled server, known as a Command and Control (C2) server, to facilitate malicious activities. Please identify the IP address of the C2 server and the port used by the malicious file to communicate with it (e.g., 1.1.1.1:443).
+30 pts.<br />
+
+<div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingLeft: "2rem" }}>
+  <img src="/image/spg-christmas/s7-3.png" alt="list" style={{ maxWidth: "100%", height: "auto" }} />
+  <p style={{ fontSize: "0.1rem", color: "gray", marginTop: "0.5rem", textAlign: "center" }}>
+    _โยนเข้า Any.run ต่อเพื่อเช็ค process [Any.run](https://app.any.run/tasks/ad0ddca2-2c07-4b84-acb5-c621e6e06267)_ 
+  </p>
+</div>
+
+จากนั้นนั่งเช็ค Connection ที่เกิดขึ้นกับ Sandbox
+<br />
+
+<div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingLeft: "2rem" }}>
+  <img src="/image/spg-christmas/s7-4.png" alt="list" style={{ maxWidth: "100%", height: "auto" }} />
+</div>
+<br />
+เมื่อเช็คแล้วจะพบว่ามี Connect ไปยัง 20[.]188[.]121[.]243 port 9999
+<p><strong>{"Flag : forensic{20.188.121.243:9999}"}</strong></p>
+
+### ```Malware Infection#3```
+ข้อ 9. From the malware file, find the key that the malware uses to encrypt files, by using the decryption function.
+50 pts.<br /><br />
+
+<div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingLeft: "2rem" }}>
+  <img src="/image/spg-christmas/s7-3.png" alt="list" style={{ maxWidth: "100%", height: "auto" }} />
+</div>
+
+สำหรับข้อนี้ตอนแรกพยายามนั่งแงะไฟล์อยู่นานแต่งงครับ 55555+ เลยนึกวีธีง่ายๆ ออก ก็คือมัลแวร์ตัวนี้มันมี Original ไฟล์อยู่ครับ ถ้าดูจาก Virustotal ก็คือ `SilverClient.exe`  
+<br />
+
+<div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingLeft: "2rem" }}>
+  <img src="/image/spg-christmas/s8-1.png" alt="list" style={{ maxWidth: "100%", height: "auto" }} />
+  <p style={{ fontSize: "0.1rem", color: "gray", marginTop: "0.5rem", textAlign: "center" }}>
+    _Search ชื่อไฟล์กับอากู๋ ก็เจอ IOC ของ  [Triage](https://tria.ge/240525-rat35afd95/static1)_ 
+  </p>
+</div>
+
+<div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingLeft: "2rem" }}>
+  <img src="/image/spg-christmas/s8-2.png" alt="list" style={{ maxWidth: "100%", height: "auto" }} />
+  <p style={{ fontSize: "0.1rem", color: "gray", marginTop: "0.5rem", textAlign: "center" }}>
+    _ดูว่ามัลแวร์นี้ทำงานยังไง ได้ที่ส่วนนี้ [Behavior](https://tria.ge/240525-rat35afd95/behavioral1)_ 
+  </p>
+</div>
+
+<div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingLeft: "2rem" }}>
+  <img src="/image/spg-christmas/s8-3.png" alt="list" style={{ maxWidth: "100%", height: "auto" }} />
+  <p style={{ fontSize: "0.1rem", color: "gray", marginTop: "0.5rem", textAlign: "center" }}>
+    _เมื่อเลื่อนลงมาเป็นตรงส่วน Malware Config ก็จะพบ decrypted_key_ 
+  </p>
+</div>
+
+สรุปก็คือโจทย์ข้อนี้ใช้ decrypted_key มาตอบครับ
+
+<p><strong>{"Flag : forensic{-|S.S.S|-}"}</strong></p>
+
+### ```malware infected```
+ข้อ 10. We found information about a malware that affected Santa's work computer. Santa downloaded a file to work with, which caused the machine to get infected with the malware. We are tasked with identifying the type of malware from the network packet we intercepted, and then using this information to locate documents related to the same type of malware on the machine. The response should be in the form of the MD5 hash of the related document files.
+10 pts.<br />
+
+สำหรับข้อนี้เป็นเฉลยของน้อง ```เก่งมิตินาว``` ครับ
+
+<div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingLeft: "2rem" }}>
+  <img src="/image/spg-christmas/s10-1.png" alt="list" style={{ maxWidth: "100%", height: "auto" }} />
+  <p style={{ fontSize: "0.1rem", color: "gray", marginTop: "0.5rem", textAlign: "center" }}>
+    _เริ่มในตอนแรกจะได้รับไฟล์ .ZIP ข้างในมีไฟล์ OVA กับ PCAPNG_ 
+  </p>
+</div>
+
+<div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingLeft: "2rem" }}>
+  <img src="/image/spg-christmas/s10-2.png" alt="list" style={{ maxWidth: "70%", height: "auto" }} />
+  <p style={{ fontSize: "0.1rem", color: "gray", marginTop: "0.5rem", textAlign: "center" }}>
+    _VMware_ 
+  </p>
+</div>
+
+เราต้องมาวิเคราะห์กันก่อนว่า OVA ไฟล์คืออะไรซึ่งมันก็คือ Open Virtual Appliance ครับ:ไฟล์ OVA เป็นฟอแมตไฟล์ มาตรฐานสำหรับ Virtual Machine ถูกสร้างขึ้นมาเพื่อความง่ายในการใช้งาน Virtual Machine ระหว่างผู้ให้บริการแต่ละเจ้า เพื่อให้เป็นมาตรฐานเดียวกันนั่นเอง ดังนั้นเราจะนำเข้าไฟล์นี้สู้โปรแกรมที่ชื่อว่า VMware เพื่อวิเคราะห์กันครับ
+<br />
+<div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingLeft: "2rem" }}>
+  <img src="/image/spg-christmas/s10-3.png" alt="list" style={{ maxWidth: "70%", height: "auto" }} />
+  <p style={{ fontSize: "0.1rem", color: "gray", marginTop: "0.5rem", textAlign: "center" }}>
+    _และเมื่อลองใช้งานเจ้า VM ตัวนี้แล้วก็จะรู้ว่ามันค่อนข้างช้าและมีปัญหาติดขัดค่อนข้างมาก_ 
+  </p>
+</div>
+
+<div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingLeft: "2rem" }}>
+  <img src="/image/spg-christmas/s10-4.png" alt="list" style={{ maxWidth: "70%", height: "auto" }} />
+  <p style={{ fontSize: "0.1rem", color: "gray", marginTop: "0.5rem", textAlign: "center" }}>
+    _7-Zip_ 
+  </p>
+</div>
+
+จึงได้เปลี่ยนวิธีด้วยการ วิเคราะห์ สิ่งที่เป็น ผลผลิตจากไฟล์ OVA แทนนั่นก็คือไฟล์ VMDK (Virtual Machine Disk) ซึ่งเป็นรูปแบบไฟล์ที่ใช้สำหรับเก็บข้อมูลของดิสก์เสมือน (virtual disk) ที่ใช้ใน
+ซอฟต์แวร์จำลองเครื่องเสมือน (virtualization software) นั่นเอง โดยเราสามารถที่จะ Extract ova ออกมาให้เป็นไฟล์ VMDK ได้ด้วยโปรแกรม 7-Zip
+<br />
+
+<div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingLeft: "2rem" }}>
+  <img src="/image/spg-christmas/s10-5.png" alt="list" style={{ maxWidth: "100%", height: "auto" }} />
+  <p style={{ fontSize: "0.1rem", color: "gray", marginTop: "0.5rem", textAlign: "center" }}>
+    _เราจะได้ไฟล์หลักๆมา 3 ไฟล์จากการ Extract OVA ด้วย 7-Zip_ 
+  </p>
+</div>
+
+<div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingLeft: "2rem" }}>
+  <img src="/image/spg-christmas/s10-6.png" alt="list" style={{ maxWidth: "70%", height: "auto" }} />
+  <p style={{ fontSize: "0.1rem", color: "gray", marginTop: "0.5rem", textAlign: "center" }}>
+    _Autopsy_ 
+  </p>
+</div>
+
+แต่ในที่นี้เราจะ Focus ไปที่ ไฟล์ VMDK กันนะครับ โดยจะทำการวิเคราะห์ไฟล์นี้ด้วยการใช้เครื่องมือที่ชื่อว่า Autopsy เพื่อวิเคราะห์ไฟล์ที่มีลักษณะคล้ายกับ Hard disk (ซึ่งโปรแกรมนี้มันถนัดมาก) กันต่อ
+<br />
+
+<div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingLeft: "2rem" }}>
+  <img src="/image/spg-christmas/s10-7.png" alt="list" style={{ maxWidth: "100%", height: "auto" }} />
+  <p style={{ fontSize: "0.1rem", color: "gray", marginTop: "0.5rem", textAlign: "center" }}>
+    _Recent Documents_ 
+  </p>
+</div>
+
+จะพบได้ว่ามี Artifact มากมายใน vmdk นี้แต่เนื่องจากโจทย์นั้นได้แนะมาว่าไฟล์เอกสารที่เราต้องต้องการค้นหานั้นถูกดาวน์โหลดมาดังนั้นเราจะมาวิเคราะห์กันที่การทำงานล่าสุดกัน
+<br />
+
+<div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingLeft: "2rem" }}>
+  <img src="/image/spg-christmas/s10-8.png" alt="list" style={{ maxWidth: "100%", height: "auto" }} />
+  <p style={{ fontSize: "0.1rem", color: "gray", marginTop: "0.5rem", textAlign: "center" }}>
+    _Extract File_ 
+  </p>
+</div>
+
+ชัดเจนแล้วว่าไฟล์ที่น่าสงสัยนี้คือ “008653065299f1e96ecd195fe23948cc3976210bc8d58ba0e1456db17270154d” ให้ตาม path ของไฟล์ Extract ไฟล์นี้ออกมาต่อกันเลย
+<br />
+
+<div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingLeft: "2rem" }}>
+  <img src="/image/spg-christmas/s10-9.png" alt="list" style={{ maxWidth: "100%", height: "auto" }} />
+  <p style={{ fontSize: "0.1rem", color: "gray", marginTop: "0.5rem", textAlign: "center" }}>
+    _โยนไฟล์เข้า [Virustotal](https://www.virustotal.com/gui/file/008653065299f1e96ecd195fe23948cc3976210bc8d58ba0e1456db17270154d)_ 
+  </p>
+</div>
+
+ให้เรานำไฟล์ที่น่าสงสัยนี้ไปตรวจสอบด้วย Virustotal
+จะได้ Hash ของไฟล์มาในรูปแบบ md5 <br />
+And finally, the flag Become
+<p><strong>{"Flag : forensic{e5d7a2dd2aafaa4e55c303c3533a36be}"}</strong></p>
+<br />
+
+สำหรับ ข้อ 11 ```The file was left behind``` ตอนนี้รอน้อง `แนคบางขวางแดนสาม` ทำ Writeup มาให้เนื่องจากแบ่งงานกันทำครับ<br />
+<br /><br />
+
+## End
+> Writeup ของเพจพันธมิตร ไปตามอ่านได้ครับ 
+> - https://medium.com/@chaoskist/sec-playground-bloody-xmas2024-ctf-incident-rev-wowza-7d0da579770a
+
+<LinkCard
+  title="Mirthz"
+  desc="ขอบคุณทุกท่านที่อ่านจนจบ หลังจากนี้จะตั้งใจเขียน Blog เรื่อยๆ ค้าบบบ😽"
+  url="https://mirthz.xyz"
+  img="/Nyan_Cat_Human_ver.webp"
+/>
