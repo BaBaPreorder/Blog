@@ -1,0 +1,578 @@
+---
+title: Cerulean - Frostbyte'24 Writeup
+description: Blue Team Lab Online Writeup
+pubDate: 01 13 2025
+image: /image/cerulean/title.png
+categories:
+  - writeup
+badge: BTLO
+tags:
+  - blue team
+  - BTLO
+  - FrostByte'24
+---
+import LinkCard from "../../components/page/LinkCard.astro";
+
+## ❄️ Challenge Story ❄️
+A malicious document has taken down our systems... could this be FrostGuard?
+
+FrostGuard is sending threats towards Cerulean Inc, mainly Jane's PC—the Head of Production. What is this bot planning?<br /><br />
+
+> ***Scenario*** <br /> <br />
+> You’re the lead security analyst at Cerulean Inc., a respected manufacturer of industrial control systems. Your SIEM alerts you to suspicious RDP connections to the Production Department—especially Jane’s PC (the head of the department). It was determined later on that the attacks were malicious. You are tasked to analyze the triage artifacts on her computer and investigate the RDP connections for possible exfiltration. <br /> <br />
+Reference Article: https://www.securityblue.team/blog/posts/investigating-insider-threats-rdp-activity-magnet-forensics
+
+<div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    padding: "0", // ลบช่องว่าง
+  }}
+>
+  <img
+    src="/image/cerulean/tool.png"
+    alt="list"
+    style={{
+      maxWidth: "80% !important", // บังคับขนาดภาพ
+      height: "auto !important",
+      margin: "0 !important", // ลบ margin ที่อาจมากระทบ
+    }}
+  />
+</div>
+<br />
+<div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    padding: "0", // ลบช่องว่าง
+  }}
+>
+  <img
+    src="/image/cerulean/tool2.png"
+    alt="list"
+    style={{
+      maxWidth: "80% !important", // บังคับขนาดภาพ
+      height: "auto !important",
+      margin: "0 !important", // ลบ margin ที่อาจมากระทบ
+    }}
+  />
+  <p
+    style={{
+      fontSize: "0.6rem !important", // บังคับให้ตัวเล็ก
+      color: "gray !important", // บังคับให้เป็นสีเทา
+      marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
+    }}
+  >
+    We have a lot of tools for use in this challenge.🥳 
+  </p>
+</div>
+
+<div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    padding: "0", // ลบช่องว่าง
+  }}
+>
+  <img
+    src="/image/cerulean/investigate.png"
+    alt="list"
+    style={{
+      maxWidth: "80% !important", // บังคับขนาดภาพ
+      height: "auto !important",
+      margin: "0 !important", // ลบ margin ที่อาจมากระทบ
+    }}
+  />
+  <p
+    style={{
+      fontSize: "0.6rem !important", // บังคับให้ตัวเล็ก
+      color: "gray !important", // บังคับให้เป็นสีเทา
+      marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
+    }}
+  >
+    Evidence come with Triage from KAPE and Axiom Report.
+  </p>
+</div>
+
+<div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    padding: "0", // ลบช่องว่าง
+  }}
+>
+  <img
+    src="/image/cerulean/readme.png"
+    alt="list"
+    style={{
+      maxWidth: "80% !important", // บังคับขนาดภาพ
+      height: "auto !important",
+      margin: "0 !important", // ลบ margin ที่อาจมากระทบ
+    }}
+  />
+  <p
+    style={{
+      fontSize: "0.6rem !important", // บังคับให้ตัวเล็ก
+      color: "gray !important", // บังคับให้เป็นสีเทา
+      marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
+    }}
+  >
+    Haha, I'm actually glad you gave me so many tools to use.
+  </p>
+</div>
+
+
+### ```Question#1```
+1) When did Jane receive the malicious mail from an attacker pretending to be from IT Support? Check the web history to help us better timeline the series of events. (Format: YYYY-MM-DD HH:MM:SS UTC) (1 points)
+
+<div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    padding: "0", // ลบช่องว่าง
+  }}
+>
+  <img
+    src="/image/cerulean/hindsight.png"
+    alt="list"
+    style={{
+      maxWidth: "80% !important", // บังคับขนาดภาพ
+      height: "auto !important",
+      margin: "0 !important", // ลบ margin ที่อาจมากระทบ
+    }}
+  />
+  <p
+    style={{
+      fontSize: "0.6rem !important", // บังคับให้ตัวเล็ก
+      color: "gray !important", // บังคับให้เป็นสีเทา
+      marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
+    }}
+  >
+  </p>
+</div>
+    I use hindsight.py for find information from webhistory.<br />
+    use -i option path ..\..\Jane\AppData\Local\Google\Chrome\User Data\Default <br /><br/>
+<div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    padding: "0", // ลบช่องว่าง
+  }}
+>
+  <img
+    src="/image/cerulean/hindsight2.png"
+    alt="list"
+    style={{
+      maxWidth: "80% !important", // บังคับขนาดภาพ
+      height: "auto !important",
+      margin: "0 !important", // ลบ margin ที่อาจมากระทบ
+    }}
+  />
+  <p
+    style={{
+      fontSize: "0.6rem !important", // บังคับให้ตัวเล็ก
+      color: "gray !important", // บังคับให้เป็นสีเทา
+      marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
+    }}
+  >
+    
+  </p>
+</div>
+After get result file from hindsight, I use Timeline Explorer for find the answer.<br/> 
+It have a lot of information, I need to scope. try to search in subject column with "IT Support".
+<br/>
+<div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    padding: "0", // ลบช่องว่าง
+  }}
+>
+  <img
+    src="/image/cerulean/hindsight4.png"
+    alt="list"
+    style={{
+      maxWidth: "80% !important", // บังคับขนาดภาพ
+      height: "auto !important",
+      margin: "0 !important", // ลบ margin ที่อาจมากระทบ
+    }}
+  />
+  <p
+    style={{
+      fontSize: "0.6rem !important", // บังคับให้ตัวเล็ก
+      color: "gray !important", // บังคับให้เป็นสีเทา
+      marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
+    }}
+  >
+    After search I found that email from IT support
+  </p>
+</div>
+
+<div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    padding: "0", // ลบช่องว่าง
+  }}
+>
+  <img
+    src="/image/cerulean/hindsight3.png"
+    alt="list"
+    style={{
+      maxWidth: "80% !important", // บังคับขนาดภาพ
+      height: "auto !important",
+      margin: "0 !important", // ลบ margin ที่อาจมากระทบ
+    }}
+  />
+  <p
+    style={{
+      fontSize: "0.6rem !important", // บังคับให้ตัวเล็ก
+      color: "gray !important", // บังคับให้เป็นสีเทา
+      marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
+    }}
+  >
+    Answer time from first email.
+  </p>
+</div>
+
+
+### ```Question#2```
+2) The threat actor immediately, after RDP’ing, tries to log into other storage-based resources. What is the one with the most traffic? (Format: Storage Name) (2 points)
+
+<div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    padding: "0", // ลบช่องว่าง
+  }}
+>
+  <img
+    src="/image/cerulean/2.png"
+    alt="list"
+    style={{
+      maxWidth: "111% !important", // บังคับขนาดภาพ
+      height: "auto !important",
+      margin: "0 !important", // ลบ margin ที่อาจมากระทบ
+    }}
+  />
+  <p
+    style={{
+      fontSize: "0.6rem !important", // บังคับให้ตัวเล็ก
+      color: "gray !important", // บังคับให้เป็นสีเทา
+      marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
+    }}
+  >
+  </p>
+</div>
+Time to use "Magnet AXOIM Examiner" to find more information. <br/>
+This question asks us to find storage-based resources, of which there are only a few. 
+In this question, I found the information about accessing to cloud storage. Then I go to "Cloud Services URLs" and filter Site name 
+"Google Drive". and see the result that most traffic shown. 
+
+### ```Question#3```
+3) It looks like the threat actor’s motive is data exfiltration via RDP. What ITM ID corresponds with this technique? (Format: XXXXX.XXX) (2 points)
+
+<div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    padding: "0", // ลบช่องว่าง
+  }}
+>
+  <img
+    src="/image/cerulean/itx.png"
+    alt="list"
+    style={{
+      maxWidth: "80% !important", // บังคับขนาดภาพ
+      height: "auto !important",
+      margin: "0 !important", // ลบ margin ที่อาจมากระทบ
+    }}
+  />
+  <p
+    style={{
+      fontSize: "0.6rem !important", // บังคับให้ตัวเล็ก
+      color: "gray !important", // บังคับให้เป็นสีเทา
+      marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
+    }}
+  >
+  </p>
+</div>
+
+It seems like the only thing we know about now is that cloud storage was used to do something to Jane's machine.<br/>
+LOL I just try to search about "google drive", and I found this. <br/>
+Ref : https://insiderthreatmatrix.org/articles/AR4/sections/IF001/subsections/IF001.001
+
+### ```Question#4```
+4) Let’s step back for a bit. Jane’s account mistakenly has admin rights. What role did they assign to her? (Format: Job Role (Title)) (2 points)
+
+<div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    padding: "0", // ลบช่องว่าง
+  }}
+>
+  <img
+    src="/image/cerulean/4.png"
+    alt="list"
+    style={{
+      maxWidth: "111% !important", // บังคับขนาดภาพ
+      height: "auto !important",
+      margin: "0 !important", // ลบ margin ที่อาจมากระทบ
+    }}
+  />
+  <p
+    style={{
+      fontSize: "0.6rem !important", // บังคับให้ตัวเล็ก
+      color: "gray !important", // บังคับให้เป็นสีเทา
+      marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
+    }}
+  >
+  </p>
+</div>
+
+This question want us to find Jane job role, look at "User Account Windows" and filter Username only Jane, and I found Jane job role description.
+
+### ```Question#5```
+5) It seems like she downloaded Slack before the RDP session. Our main point of communication is Teams, so this is strange. What is the installation date and time of this software? (Format: YYYY-MM-DD HH:MM:SS UTC) (2 points)
+
+<div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    padding: "0", // ลบช่องว่าง
+  }}
+>
+  <img
+    src="/image/cerulean/5.png"
+    alt="list"
+    style={{
+      maxWidth: "111% !important", // บังคับขนาดภาพ
+      height: "auto !important",
+      margin: "0 !important", // ลบ margin ที่อาจมากระทบ
+    }}
+  />
+  <p
+    style={{
+      fontSize: "0.6rem !important", // บังคับให้ตัวเล็ก
+      color: "gray !important", // บังคับให้เป็นสีเทา
+      marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
+    }}
+  >
+  </p>
+</div>
+
+This question want us to find installation time of Slack, we can find information about installed program in the Axiom report.
+Check in "Installed Programs", we gonna found that on the first record.
+
+### ```Question#6```
+6) There is enough evidence of Slack being used on Jane’s machine. Can you provide the unofficial URL being utilized for communication? (Format: hxxps://url.tld) (3 points)
+
+<div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    padding: "0", // ลบช่องว่าง
+  }}
+>
+  <img
+    src="/image/cerulean/6.png"
+    alt="list"
+    style={{
+      maxWidth: "80% !important", // บังคับขนาดภาพ
+      height: "auto !important",
+      margin: "0 !important", // ลบ margin ที่อาจมากระทบ
+    }}
+  />
+  <p
+    style={{
+      fontSize: "0.6rem !important", // บังคับให้ตัวเล็ก
+      color: "gray !important", // บังคับให้เป็นสีเทา
+      marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
+    }}
+  >
+  </p>
+</div>
+
+Comeback to find web history that relate with slack, I search subject with "slack" and I found only 1 URLs that look suspicious.
+
+### ```Question#7```
+Q7) Provide the initial time and Origin IP Address for the RDP connections to Jane’s workstation. (Format: MM/D/YYYY H:MM:SSS XX UTC, XXX[.]XXX[.]XXX[.]XXX) (4 points)
+
+<div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    padding: "0", // ลบช่องว่าง
+  }}
+>
+  <img
+    src="/image/cerulean/7.png"
+    alt="list"
+    style={{
+      maxWidth: "111% !important", // บังคับขนาดภาพ
+      height: "auto !important",
+      margin: "0 !important", // ลบ margin ที่อาจมากระทบ
+    }}
+  />
+  <p
+    style={{
+      fontSize: "0.6rem !important", // บังคับให้ตัวเล็ก
+      color: "gray !important", // บังคับให้เป็นสีเทา
+      marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
+    }}
+  >
+  </p>
+</div>
+
+Then back to Axiom report again, find information about RDP connections, filter Jane in  "Origin Service Name". And looking for first connection.<br/>
+Don't forget to change time to UTC. (+12 hr. in this case)  
+
+### ```Question#8```
+Q8) Our Project Venus plans were leaked, triggering the defenses. What are the four documents in alphabetical order? (Hint: examine the Windows Defender Logs) (Tip: remove 'project venus' and 'cerulean' from the document names). (Format: Doc1, Doc2, Doc3, Doc4) (9 points)
+
+<div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    padding: "0", // ลบช่องว่าง
+  }}
+>
+  <img
+    src="/image/cerulean/8-1.png"
+    alt="list"
+    style={{
+      maxWidth: "80% !important", // บังคับขนาดภาพ
+      height: "auto !important",
+      margin: "0 !important", // ลบ margin ที่อาจมากระทบ
+    }}
+  />
+  <p
+    style={{
+      fontSize: "0.6rem !important", // บังคับให้ตัวเล็ก
+      color: "gray !important", // บังคับให้เป็นสีเทา
+      marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
+    }}
+  >
+  </p>
+</div>
+
+This question need us to find trigger information in Windows Defender Logs, we need to find "MPlog" in Windows Defender folder.<br/>
+Path : ```../../ProgramData/Microsoft/Windows Defender/Support ```<br/>
+Ref : https://www.crowdstrike.com/en-us/blog/how-to-use-microsoft-protection-logging-for-forensic-investigations/
+<div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    padding: "0", // ลบช่องว่าง
+  }}
+>
+  <img
+    src="/image/cerulean/8-2.png"
+    alt="list"
+    style={{
+      maxWidth: "110% !important", // บังคับขนาดภาพ
+      height: "auto !important",
+      margin: "0 !important", // ลบ margin ที่อาจมากระทบ
+    }}
+  />
+  <p
+    style={{
+      fontSize: "0.6rem !important", // บังคับให้ตัวเล็ก
+      color: "gray !important", // บังคับให้เป็นสีเทา
+      marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
+    }}
+  >
+    try to search with "project"
+  </p>
+</div>
+
+<div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    padding: "0", // ลบช่องว่าง
+  }}
+>
+  <img
+    src="/image/cerulean/8-3.png"
+    alt="list"
+    style={{
+      maxWidth: "110% !important", // บังคับขนาดภาพ
+      height: "auto !important",
+      margin: "0 !important", // ลบ margin ที่อาจมากระทบ
+    }}
+  />
+  <p
+    style={{
+      fontSize: "0.6rem !important", // บังคับให้ตัวเล็ก
+      color: "gray !important", // บังคับให้เป็นสีเทา
+      marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
+    }}
+  >
+  </p>
+</div>
+
+Don't forget to remove 'project venus' and 'cerulean' and answer with alphabetical order. 
+
+
+## End
+
+
+<LinkCard
+  title="Mirthz"
+  desc="Thank you everyone for reading.😽"
+  url="https://mirthz.xyz"
+  img="/Nyan_Cat_Human_ver.webp"
+/>
