@@ -1,8 +1,8 @@
 ---
-title: Cerulean - Blue Team Lab Online Writeup 
+title: Rundeer - Blue Team Lab Online Writeup 
 description: Frostbyte'24 from Blue Team Lab Online
 pubDate: 01 13 2025
-image: /image/cerulean/title.png
+image: /image/rundeer/title.png
 categories:
   - writeup
 badge: BTLO
@@ -14,12 +14,12 @@ tags:
 import LinkCard from "../../components/page/LinkCard.astro";
 
 ## ❄️ Challenge Story ❄️
-
-FrostGuard is sending threats towards Cerulean Inc, mainly Jane's PC—the Head of Production. What is this bot planning?<br /><br />
+A malicious document has taken down our systems... could this be FrostGuard?
+<br />
 
 > ***Scenario*** <br /> <br />
-> You’re the lead security analyst at Cerulean Inc., a respected manufacturer of industrial control systems. Your SIEM alerts you to suspicious RDP connections to the Production Department—especially Jane’s PC (the head of the department). It was determined later on that the attacks were malicious. You are tasked to analyze the triage artifacts on her computer and investigate the RDP connections for possible exfiltration. <br /> <br />
-Reference Article: https://www.securityblue.team/blog/posts/investigating-insider-threats-rdp-activity-magnet-forensics
+> An attacker sneaks in through a malicious document and gains control over the system. They move quickly, causing trouble and eventually deploying malware to lock up important files. Your mission is to track down their actions, find the attacker, and recover the encrypted files to bring everything back to normal. <br />
+
 
 <div
   style={{
@@ -32,7 +32,7 @@ Reference Article: https://www.securityblue.team/blog/posts/investigating-inside
   }}
 >
   <img
-    src="/image/cerulean/tool.png"
+    src="/image/rundeer/tool.png"
     alt="list"
     style={{
       maxWidth: "80% !important", // บังคับขนาดภาพ
@@ -53,7 +53,7 @@ Reference Article: https://www.securityblue.team/blog/posts/investigating-inside
   }}
 >
   <img
-    src="/image/cerulean/tool2.png"
+    src="/image/rundeer/tool2.png"
     alt="list"
     style={{
       maxWidth: "80% !important", // บังคับขนาดภาพ
@@ -68,7 +68,7 @@ Reference Article: https://www.securityblue.team/blog/posts/investigating-inside
       marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
     }}
   >
-    We have a lot of tools for use in this challenge.🥳 
+    We have "Cutter" for use in this challenge. This tool can use for RE.🥳 
   </p>
 </div>
 
@@ -83,7 +83,7 @@ Reference Article: https://www.securityblue.team/blog/posts/investigating-inside
   }}
 >
   <img
-    src="/image/cerulean/investigate.png"
+    src="/image/rundeer/artifact.png"
     alt="list"
     style={{
       maxWidth: "80% !important", // บังคับขนาดภาพ
@@ -98,7 +98,7 @@ Reference Article: https://www.securityblue.team/blog/posts/investigating-inside
       marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
     }}
   >
-    Evidence come with Triage from KAPE and Axiom Report.
+    Evidence come with sample malware and memory dump.
   </p>
 </div>
 
@@ -113,7 +113,7 @@ Reference Article: https://www.securityblue.team/blog/posts/investigating-inside
   }}
 >
   <img
-    src="/image/cerulean/readme.png"
+    src="/image/rundeer/readme.png"
     alt="list"
     style={{
       maxWidth: "80% !important", // บังคับขนาดภาพ
@@ -128,13 +128,42 @@ Reference Article: https://www.securityblue.team/blog/posts/investigating-inside
       marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
     }}
   >
-    Haha, I'm actually glad you gave me so many tools to use.
+    Don't forget to use python ver. 3.8 to use volatility. 
   </p>
 </div>
 
+<div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    padding: "0", // ลบช่องว่าง
+  }}
+>
+  <img
+    src="/image/rundeer/vola.png"
+    alt="list"
+    style={{
+      maxWidth: "110% !important", // บังคับขนาดภาพ
+      height: "auto !important",
+      margin: "0 !important", // ลบ margin ที่อาจมากระทบ
+    }}
+  />
+  <p
+    style={{
+      fontSize: "0.6rem !important", // บังคับให้ตัวเล็ก
+      color: "gray !important", // บังคับให้เป็นสีเทา
+      marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
+    }}
+  >
+    Before start Q1, I'm prepare more information for investigate. 
+  </p>
+</div>
 
 ### ```Question#1```
-1) When did Jane receive the malicious mail from an attacker pretending to be from IT Support? Check the web history to help us better timeline the series of events. (Format: YYYY-MM-DD HH:MM:SS UTC) (1 points)
+1) Using volatility, find the file that led to Initial Access to the workstation. (Format: Filename.extension) (5 points)
 
 <div
   style={{
@@ -147,7 +176,7 @@ Reference Article: https://www.securityblue.team/blog/posts/investigating-inside
   }}
 >
   <img
-    src="/image/cerulean/hindsight.png"
+    src="/image/rundeer/3-1.png"
     alt="list"
     style={{
       maxWidth: "80% !important", // บังคับขนาดภาพ
@@ -164,8 +193,7 @@ Reference Article: https://www.securityblue.team/blog/posts/investigating-inside
   >
   </p>
 </div>
-    I use hindsight.py for find information from webhistory.<br />
-    use -i option path ..\..\Jane\AppData\Local\Google\Chrome\User Data\Default <br /><br/>
+
 <div
   style={{
     display: "flex",
@@ -177,10 +205,10 @@ Reference Article: https://www.securityblue.team/blog/posts/investigating-inside
   }}
 >
   <img
-    src="/image/cerulean/hindsight2.png"
+    src="/image/rundeer/1v2.png"
     alt="list"
     style={{
-      maxWidth: "80% !important", // บังคับขนาดภาพ
+      maxWidth: "110% !important", // บังคับขนาดภาพ
       height: "auto !important",
       margin: "0 !important", // ลบ margin ที่อาจมากระทบ
     }}
@@ -192,11 +220,387 @@ Reference Article: https://www.securityblue.team/blog/posts/investigating-inside
       marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
     }}
   >
-    
   </p>
 </div>
-After get result file from hindsight, I use Timeline Explorer for find the answer.<br/> 
-It have a lot of information, I need to scope. try to search in subject column with "IT Support".
+Scenario tell us about malicious document, so I found "PendingInvoice.docm" that look suspicious.
+After investigation from cmdline, that Powershell is launched by activating a .docm file.
+This Questoin want only filename to answer, use that name to solve.
+
+<br/>
+
+### ```Question#2```
+2) Provide the name of the compromised user account. (Format: User) (3 points)
+
+From Q1 we found that file in Reindeer user Desktop, that mean this user got compromised.
+
+### ```Question#3```
+3) A reverse shell activity took place, find the IP and associated port. (Format: IP, Port) (4 points)
+
+
+<div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    padding: "0", // ลบช่องว่าง
+  }}
+>
+  <img
+    src="/image/rundeer/3-2.png"
+    alt="list"
+    style={{
+      maxWidth: "110% !important", // บังคับขนาดภาพ
+      height: "auto !important",
+      margin: "0 !important", // ลบ margin ที่อาจมากระทบ
+    }}
+  />
+  <p
+    style={{
+      fontSize: "0.6rem !important", // บังคับให้ตัวเล็ก
+      color: "gray !important", // บังคับให้เป็นสีเทา
+      marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
+    }}
+  >
+  </p>
+</div>
+
+<div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    padding: "0", // ลบช่องว่าง
+  }}
+>
+  <img
+    src="/image/rundeer/3-3.png"
+    alt="list"
+    style={{
+      maxWidth: "110% !important", // บังคับขนาดภาพ
+      height: "auto !important",
+      margin: "0 !important", // ลบ margin ที่อาจมากระทบ
+    }}
+  />
+  <p
+    style={{
+      fontSize: "0.6rem !important", // บังคับให้ตัวเล็ก
+      color: "gray !important", // บังคับให้เป็นสีเทา
+      marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
+    }}
+  >
+  </p>
+</div>
+
+After Decyrpted base64 command we found that try to connect "139[.]177[.]207[.]94" port 8080.
+
+### ```Question#4```
+4) Analyze the given malware file and provide the category to which it best belongs. (Format: Category) (3 points)
+
+<div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    padding: "0", // ลบช่องว่าง
+  }}
+>
+  <img
+    src="/image/rundeer/4-1.png"
+    alt="list"
+    style={{
+      maxWidth: "111% !important", // บังคับขนาดภาพ
+      height: "auto !important",
+      margin: "0 !important", // ลบ margin ที่อาจมากระทบ
+    }}
+  />
+  <p
+    style={{
+      fontSize: "0.6rem !important", // บังคับให้ตัวเล็ก
+      color: "gray !important", // บังคับให้เป็นสีเทา
+      marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
+    }}
+  >
+  Import sample malware(Conhost.exe) to Cutter.
+  </p>
+</div>
+
+<div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    padding: "0", // ลบช่องว่าง
+  }}
+>
+  <img
+    src="/image/rundeer/4-2.jpg"
+    alt="list"
+    style={{
+      maxWidth: "111% !important", // บังคับขนาดภาพ
+      height: "auto !important",
+      margin: "0 !important", // ลบ margin ที่อาจมากระทบ
+    }}
+  />
+  <p
+    style={{
+      fontSize: "0.6rem !important", // บังคับให้ตัวเล็ก
+      color: "gray !important", // บังคับให้เป็นสีเทา
+      marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
+    }}
+  >
+  Decomplie function Main first. <br/>
+  We found 2 function that interesting (fnc_00402234 & fnc_00403abc).
+  </p>
+</div>
+
+<div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    padding: "0", // ลบช่องว่าง
+  }}
+>
+  <img
+    src="/image/rundeer/4-3.png"
+    alt="list"
+    style={{
+      maxWidth: "111% !important", // บังคับขนาดภาพ
+      height: "auto !important",
+      margin: "0 !important", // ลบ margin ที่อาจมากระทบ
+    }}
+  />
+  <p
+    style={{
+      fontSize: "0.6rem !important", // บังคับให้ตัวเล็ก
+      color: "gray !important", // บังคับให้เป็นสีเทา
+      marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
+    }}
+  >
+  Decomplie fnc_00402234 we found the API that call Computer name for do something.<br/>
+  After that XOR with 0x23.
+  </p>
+</div>
+
+<div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    padding: "0", // ลบช่องว่าง
+  }}
+>
+  <img
+    src="/image/rundeer/4-4.png"
+    alt="list"
+    style={{
+      maxWidth: "111% !important", // บังคับขนาดภาพ
+      height: "auto !important",
+      margin: "0 !important", // ลบ margin ที่อาจมากระทบ
+    }}
+  />
+  <p
+    style={{
+      fontSize: "0.6rem !important", // บังคับให้ตัวเล็ก
+      color: "gray !important", // บังคับให้เป็นสีเทา
+      marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
+    }}
+  >
+  Decomplie fnc_00403abc we found this function gonna change extension file after encrypted.
+  </p>
+</div>
+
+Overall summary is that this program will use fnc_00402234 for call Computer name,then XOR with 0x23 and use that to be key.
+And use that key XOR with all files in target folder, change extension to .FROSTED file.<br/><br/>
+The program's procedure is to encrypt files and make them unreadable, which is what "Ransomware" is all about.
+
+
+### ```Question#5```
+5) A component of the Windows workstation is being used for key creation in malware. Which API call is responsible for fetching it? (Format: API) (5 points)
+
+From Q4 we found this program use an API that call Computer name. Use name of that API for answer this question.
+
+### ```Question#6```
+6) What extension is the malware adding to the files it is affecting? (Format: EXTENSION (without dot)) (8 points)
+
+From Q4 we know that gonna changed to .FROSTED after encrypted file.
+
+### ```Question#7```
+7) There was a key text file affected by malware. Find and dump it. Provide its MD5 hash. (Format: MD5 hash) (8 points)
+
+<div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    padding: "0", // ลบช่องว่าง
+  }}
+>
+  <img
+    src="/image/rundeer/7-1.png"
+    alt="list"
+    style={{
+      maxWidth: "111% !important", // บังคับขนาดภาพ
+      height: "auto !important",
+      margin: "0 !important", // ลบ margin ที่อาจมากระทบ
+    }}
+  />
+  <p
+    style={{
+      fontSize: "0.6rem !important", // บังคับให้ตัวเล็ก
+      color: "gray !important", // บังคับให้เป็นสีเทา
+      marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
+    }}
+  >
+  Try to find .FROSTED file from volatility filescan. <br/>
+  I found README.txt.FROSTED in S3cr3t folder that look interesting.
+  </p>
+</div>
+
+<div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    padding: "0", // ลบช่องว่าง
+  }}
+>
+  <img
+    src="/image/rundeer/7-2.png"
+    alt="list"
+    style={{
+      maxWidth: "108% !important", // บังคับขนาดภาพ
+      height: "auto !important",
+      margin: "0 !important", // ลบ margin ที่อาจมากระทบ
+    }}
+  />
+  <p
+    style={{
+      fontSize: "0.6rem !important", // บังคับให้ตัวเล็ก
+      color: "gray !important", // บังคับให้เป็นสีเทา
+      marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
+    }}
+  >
+  </p>
+</div>
+
+<div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    padding: "0", // ลบช่องว่าง
+  }}
+>
+  <img
+    src="/image/rundeer/7-3.png"
+    alt="list"
+    style={{
+      maxWidth: "111% !important", // บังคับขนาดภาพ
+      height: "auto !important",
+      margin: "0 !important", // ลบ margin ที่อาจมากระทบ
+    }}
+  />
+  <p
+    style={{
+      fontSize: "0.6rem !important", // บังคับให้ตัวเล็ก
+      color: "gray !important", // บังคับให้เป็นสีเทา
+      marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
+    }}
+  >
+  </p>
+</div>
+
+Use offset of README.txt.FROSTED for recovery file from memory dump file.<br/>
+Option : ```windows.dumpfiles --virtaddr 0x.........``` <br/>
+Answer this question by MD5 hash
+
+### ```Question#8```
+8) You are tasked to decrypt the file. Analyze the malware and get the decryption key. (Format: decryption key (in lowercase, ASCII format)) (8 points)
+
+<div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    padding: "0", // ลบช่องว่าง
+  }}
+>
+  <img
+    src="/image/rundeer/8-1.png"
+    alt="list"
+    style={{
+      maxWidth: "108% !important", // บังคับขนาดภาพ
+      height: "auto !important",
+      margin: "0 !important", // ลบ margin ที่อาจมากระทบ
+    }}
+  />
+  <p
+    style={{
+      fontSize: "0.6rem !important", // บังคับให้ตัวเล็ก
+      color: "gray !important", // บังคับให้เป็นสีเทา
+      marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
+    }}
+  > 
+  </p>
+</div>
+
+From Q7 we remember that key encrypted by Computername.<br/>
+Use option : <br/>
+```windows.registry.printkey --key "Control001\\Control\ComputerName"```
+<br/>
+
+<div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    padding: "0", // ลบช่องว่าง
+  }}
+>
+  <img
+    src="/image/rundeer/8-2.png"
+    alt="list"
+    style={{
+      maxWidth: "108% !important", // บังคับขนาดภาพ
+      height: "auto !important",
+      margin: "0 !important", // ลบ margin ที่อาจมากระทบ
+    }}
+  />
+  <p
+    style={{
+      fontSize: "0.6rem !important", // บังคับให้ตัวเล็ก
+      color: "gray !important", // บังคับให้เป็นสีเทา
+      marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
+    }}
+  >
+  </p>
+</div>
+
+Found ComputerName and ActiveComputerName, then print more key with ActiveComputerName.
+And I found this computer name is "FROSTBTYE"
 <br/>
 <div
   style={{
@@ -209,10 +613,10 @@ It have a lot of information, I need to scope. try to search in subject column w
   }}
 >
   <img
-    src="/image/cerulean/hindsight4.png"
+    src="/image/rundeer/8-3.png"
     alt="list"
     style={{
-      maxWidth: "80% !important", // บังคับขนาดภาพ
+      maxWidth: "108% !important", // บังคับขนาดภาพ
       height: "auto !important",
       margin: "0 !important", // ลบ margin ที่อาจมากระทบ
     }}
@@ -224,9 +628,16 @@ It have a lot of information, I need to scope. try to search in subject column w
       marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
     }}
   >
-    After search I found that email from IT support
   </p>
 </div>
+
+XOR computer name with 0x23, and we will get the key. !!! <br/><br/>
+
+If you want to learn about this more, I recommend this Video.<br/>
+Ref : https://youtu.be/1dbepxN2YD8?si=TIhOedf2ZzJRis6k&t=1553
+
+### ```Question#9```
+9) Decrypt the text file. Read the content. Who sent the information to the user, provide the name. (As per the content inside the text file) (Format: Name) (6 points)
 
 <div
   style={{
@@ -239,80 +650,10 @@ It have a lot of information, I need to scope. try to search in subject column w
   }}
 >
   <img
-    src="/image/cerulean/hindsight3.png"
+    src="/image/rundeer/9.png"
     alt="list"
     style={{
-      maxWidth: "80% !important", // บังคับขนาดภาพ
-      height: "auto !important",
-      margin: "0 !important", // ลบ margin ที่อาจมากระทบ
-    }}
-  />
-  <p
-    style={{
-      fontSize: "0.6rem !important", // บังคับให้ตัวเล็ก
-      color: "gray !important", // บังคับให้เป็นสีเทา
-      marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
-    }}
-  >
-    Answer time from first email.
-  </p>
-</div>
-
-
-### ```Question#2```
-2) The threat actor immediately, after RDP’ing, tries to log into other storage-based resources. What is the one with the most traffic? (Format: Storage Name) (2 points)
-
-<div
-  style={{
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    textAlign: "center",
-    padding: "0", // ลบช่องว่าง
-  }}
->
-  <img
-    src="/image/cerulean/2.png"
-    alt="list"
-    style={{
-      maxWidth: "111% !important", // บังคับขนาดภาพ
-      height: "auto !important",
-      margin: "0 !important", // ลบ margin ที่อาจมากระทบ
-    }}
-  />
-  <p
-    style={{
-      fontSize: "0.6rem !important", // บังคับให้ตัวเล็ก
-      color: "gray !important", // บังคับให้เป็นสีเทา
-      marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
-    }}
-  >
-  </p>
-</div>
-Time to use "Magnet AXOIM Examiner" to find more information. <br/>
-This question asks us to find storage-based resources, of which there are only a few. 
-In this question, I found the information about accessing to cloud storage. Then I go to "Cloud Services URLs" and filter Site name 
-"Google Drive". and see the result that most traffic shown. 
-
-### ```Question#3```
-3) It looks like the threat actor’s motive is data exfiltration via RDP. What ITM ID corresponds with this technique? (Format: XXXXX.XXX) (2 points)
-
-<div
-  style={{
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    textAlign: "center",
-    padding: "0", // ลบช่องว่าง
-  }}
->
-  <img
-    src="/image/cerulean/itx.png"
-    alt="list"
-    style={{
-      maxWidth: "80% !important", // บังคับขนาดภาพ
+      maxWidth: "108% !important", // บังคับขนาดภาพ
       height: "auto !important",
       margin: "0 !important", // ลบ margin ที่อาจมากระทบ
     }}
@@ -327,243 +668,8 @@ In this question, I found the information about accessing to cloud storage. Then
   </p>
 </div>
 
-It seems like the only thing we know about now is that cloud storage was used to do something to Jane's machine.<br/>
-LOL I just try to search about "google drive", and I found this. <br/>
-Ref : https://insiderthreatmatrix.org/articles/AR4/sections/IF001/subsections/IF001.001
-
-### ```Question#4```
-4) Let’s step back for a bit. Jane’s account mistakenly has admin rights. What role did they assign to her? (Format: Job Role (Title)) (2 points)
-
-<div
-  style={{
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    textAlign: "center",
-    padding: "0", // ลบช่องว่าง
-  }}
->
-  <img
-    src="/image/cerulean/4.png"
-    alt="list"
-    style={{
-      maxWidth: "111% !important", // บังคับขนาดภาพ
-      height: "auto !important",
-      margin: "0 !important", // ลบ margin ที่อาจมากระทบ
-    }}
-  />
-  <p
-    style={{
-      fontSize: "0.6rem !important", // บังคับให้ตัวเล็ก
-      color: "gray !important", // บังคับให้เป็นสีเทา
-      marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
-    }}
-  >
-  </p>
-</div>
-
-This question want us to find Jane job role, look at "User Account Windows" and filter Username only Jane, and I found Jane job role description.
-
-### ```Question#5```
-5) It seems like she downloaded Slack before the RDP session. Our main point of communication is Teams, so this is strange. What is the installation date and time of this software? (Format: YYYY-MM-DD HH:MM:SS UTC) (2 points)
-
-<div
-  style={{
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    textAlign: "center",
-    padding: "0", // ลบช่องว่าง
-  }}
->
-  <img
-    src="/image/cerulean/5.png"
-    alt="list"
-    style={{
-      maxWidth: "111% !important", // บังคับขนาดภาพ
-      height: "auto !important",
-      margin: "0 !important", // ลบ margin ที่อาจมากระทบ
-    }}
-  />
-  <p
-    style={{
-      fontSize: "0.6rem !important", // บังคับให้ตัวเล็ก
-      color: "gray !important", // บังคับให้เป็นสีเทา
-      marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
-    }}
-  >
-  </p>
-</div>
-
-This question want us to find installation time of Slack, we can find information about installed program in the Axiom report.
-Check in "Installed Programs", we gonna found that on the first record.
-Don't forget to change time to UTC. (+12 hr. in this case)  
-### ```Question#6```
-6) There is enough evidence of Slack being used on Jane’s machine. Can you provide the unofficial URL being utilized for communication? (Format: hxxps://url.tld) (3 points)
-
-<div
-  style={{
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    textAlign: "center",
-    padding: "0", // ลบช่องว่าง
-  }}
->
-  <img
-    src="/image/cerulean/6.png"
-    alt="list"
-    style={{
-      maxWidth: "80% !important", // บังคับขนาดภาพ
-      height: "auto !important",
-      margin: "0 !important", // ลบ margin ที่อาจมากระทบ
-    }}
-  />
-  <p
-    style={{
-      fontSize: "0.6rem !important", // บังคับให้ตัวเล็ก
-      color: "gray !important", // บังคับให้เป็นสีเทา
-      marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
-    }}
-  >
-  </p>
-</div>
-
-Comeback to find web history that relate with slack, I search subject with "slack" and I found only 1 URLs that look suspicious.
-
-### ```Question#7```
-Q7) Provide the initial time and Origin IP Address for the RDP connections to Jane’s workstation. (Format: MM/D/YYYY H:MM:SSS XX UTC, XXX[.]XXX[.]XXX[.]XXX) (4 points)
-
-<div
-  style={{
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    textAlign: "center",
-    padding: "0", // ลบช่องว่าง
-  }}
->
-  <img
-    src="/image/cerulean/7.png"
-    alt="list"
-    style={{
-      maxWidth: "111% !important", // บังคับขนาดภาพ
-      height: "auto !important",
-      margin: "0 !important", // ลบ margin ที่อาจมากระทบ
-    }}
-  />
-  <p
-    style={{
-      fontSize: "0.6rem !important", // บังคับให้ตัวเล็ก
-      color: "gray !important", // บังคับให้เป็นสีเทา
-      marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
-    }}
-  >
-  </p>
-</div>
-
-Then back to Axiom report again, find information about RDP connections, filter Jane in  "Origin Service Name". And looking for first connection.<br/>
-
-### ```Question#8```
-Q8) Our Project Venus plans were leaked, triggering the defenses. What are the four documents in alphabetical order? (Hint: examine the Windows Defender Logs) (Tip: remove 'project venus' and 'cerulean' from the document names). (Format: Doc1, Doc2, Doc3, Doc4) (9 points)
-
-<div
-  style={{
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    textAlign: "center",
-    padding: "0", // ลบช่องว่าง
-  }}
->
-  <img
-    src="/image/cerulean/8-1.png"
-    alt="list"
-    style={{
-      maxWidth: "80% !important", // บังคับขนาดภาพ
-      height: "auto !important",
-      margin: "0 !important", // ลบ margin ที่อาจมากระทบ
-    }}
-  />
-  <p
-    style={{
-      fontSize: "0.6rem !important", // บังคับให้ตัวเล็ก
-      color: "gray !important", // บังคับให้เป็นสีเทา
-      marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
-    }}
-  >
-  </p>
-</div>
-
-This question need us to find trigger information in Windows Defender Logs, we need to find "MPlog" in Windows Defender folder.<br/>
-Path : ```../../ProgramData/Microsoft/Windows Defender/Support ```<br/>
-Ref : https://www.crowdstrike.com/en-us/blog/how-to-use-microsoft-protection-logging-for-forensic-investigations/
-<div
-  style={{
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    textAlign: "center",
-    padding: "0", // ลบช่องว่าง
-  }}
->
-  <img
-    src="/image/cerulean/8-2.png"
-    alt="list"
-    style={{
-      maxWidth: "110% !important", // บังคับขนาดภาพ
-      height: "auto !important",
-      margin: "0 !important", // ลบ margin ที่อาจมากระทบ
-    }}
-  />
-  <p
-    style={{
-      fontSize: "0.6rem !important", // บังคับให้ตัวเล็ก
-      color: "gray !important", // บังคับให้เป็นสีเทา
-      marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
-    }}
-  >
-    try to search with "project"
-  </p>
-</div>
-
-<div
-  style={{
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    textAlign: "center",
-    padding: "0", // ลบช่องว่าง
-  }}
->
-  <img
-    src="/image/cerulean/8-3.png"
-    alt="list"
-    style={{
-      maxWidth: "110% !important", // บังคับขนาดภาพ
-      height: "auto !important",
-      margin: "0 !important", // ลบ margin ที่อาจมากระทบ
-    }}
-  />
-  <p
-    style={{
-      fontSize: "0.6rem !important", // บังคับให้ตัวเล็ก
-      color: "gray !important", // บังคับให้เป็นสีเทา
-      marginTop: "0.2rem !important", // ลดระยะห่างระหว่างข้อความกับภาพ
-    }}
-  >
-  </p>
-</div>
-
-Don't forget to remove 'project venus' and 'cerulean' and answer with alphabetical order. 
-
+Last step use the Key from Q8 XOR with README.txt.FROSTED. (Don't forget to import file in Cyberchef first) <br/>
+Now, we got something look like message from someone to Reindeer.
 
 ## End
 
